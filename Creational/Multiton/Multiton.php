@@ -26,6 +26,10 @@ class Multiton
 
 	final private function __wakeup(){}
 	
+	public function __toString()
+	{
+		return $this->property;
+	}
 	
 	
 }
