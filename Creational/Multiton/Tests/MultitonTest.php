@@ -23,24 +23,32 @@ class MultitonTest extends TestCase
 		
 		############################
 		
-		$m3 = Multiton::getInstance('cat');
-		$this->assertInstanceOf(Multiton::class, $m3);
+		// $m3 = Multiton::getInstance('cat');
+		// $this->assertInstanceOf(Multiton::class, $m3);
 		
-		$m4 = Multiton::getInstance('cat');
-		$this->assertSame($m3, $m4);
+		// $m4 = Multiton::getInstance('cat');
+		// $this->assertSame($m3, $m4);
 		
-		$this->expectOutputString('cat');
-		echo $m4;
+		// $this->expectOutputString('cat');
+		// echo $m4;
 		
 		############################
 		
-		// $ms1 = MultitonSon::getInstance('dog');
-		// $this->assertInstanceOf(Multiton::class, $ms1);
-		// $this->assertInstanceOf(MultitonSon::class, $ms1);
+		$ms1 = MultitonSon::getInstance('dog');
+		$this->assertInstanceOf(Multiton::class, $ms1);
+		$this->assertInstanceOf(MultitonSon::class, $ms1);
 		
 		
-		// $ms2 = MultitonSon::getInstance('dog');
-		// $this->assertSame($ms1, $ms2);
+		$ms2 = MultitonSon::getInstance('dog');
+		$this->assertSame($ms1, $ms2);
+		
+		
+		$ref = new ReflectionClass($ms2);
+		$this->assertTrue($ref->hasMethod('say'));
+		
+		
+		$this->expectOutputString('dog');
+		echo $ms2;
 	}
 
 
